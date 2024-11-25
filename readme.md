@@ -79,8 +79,6 @@ class RandomizedSet(object):
         import random
         return random.choice(self.lst)
         
-
-
 # Your RandomizedSet object will be instantiated and called as such:
 # obj = RandomizedSet()
 # param_1 = obj.insert(val)

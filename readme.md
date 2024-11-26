@@ -1,8 +1,43 @@
 
+- [13. Roman to Integer](#13-roman-to-integer)
 - [274. H-Index](#274-h-index)
 - [380. Insert Delete GetRandom O(1)](#380-insert-delete-getrandom-o1)
 
 
+# 13. Roman to Integer
+
+https://leetcode.com/problems/roman-to-integer/description/?envType=study-plan-v2&envId=top-interview-150
+
+```
+class Solution(object):
+    def romanToInt(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+
+        res = 0
+        
+        roman = {
+            "I": 1,
+            "V": 5,
+            "X": 10,
+            "L": 50,
+            "C": 100,
+            "D": 500,
+            "M": 1000,
+        }
+
+        for a, b in zip(s, s[1:]):
+            
+            if roman[a] < roman[b]:
+                res -= roman[a]
+            else:
+                res += roman[a]
+
+        return res + roman[s[-1]]
+
+```
 
 # 274. H-Index
 
@@ -85,3 +120,4 @@ class RandomizedSet(object):
 # param_2 = obj.remove(val)
 # param_3 = obj.getRandom()
 ```
+

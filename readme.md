@@ -54,6 +54,10 @@ class Solution(object):
 
 # 27. Remove Element
 
+有機會可以用在其他地方。當想要移除數列中的某個數值而位置不重要的之後。
+
+關於移除某個單個unique的數值，可以參考 [380. Insert Delete GetRandom O(1)](#380-insert-delete-getrandom-o1)
+
 ```
 class Solution(object):
     def removeElement(self, nums, val):
@@ -62,7 +66,7 @@ class Solution(object):
         :type val: int
         :rtype: int
         """
-        
+
         k = 0
 
         for i in range(len(nums)):
@@ -72,6 +76,11 @@ class Solution(object):
                 nums[k] = nums[i]
 
                 k += 1
+
+        # [1, 2, 3] remove 2, --> [1, 3, _] --> k = 2
+        # [2, 3, 3, 2] remove 3, --> [3, 3, _, _] --> k = 2
+
+        # _ denote the values we dont care
 
         return k
 ```

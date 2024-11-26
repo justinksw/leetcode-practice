@@ -28,6 +28,13 @@ class Solution(object):
         
         res = []
 
+        # 3749 // 1000 = 3 --> MMM
+        # 749 // 500 = 1 --> D
+        # 249 // 100 = 2 --> CC
+        # 49 // 40 = 1 --> XL
+        # 9 // 9 = 1 --> IX
+        # 3749 --> MMMDCCXLIX
+
         for value, symbol in value_symbols:
             if num == 0:
                 break

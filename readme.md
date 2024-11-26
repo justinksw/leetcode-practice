@@ -87,6 +87,17 @@ class Solution(object):
 
 # 26. Remove Duplicates from Sorted Array
 
+和上一題的分別是：這一題是移除重複的值。
+
+上一題：
+
+[2, 3, 3, 2] 移除 2 --> [3, 3, _, _]
+
+這一題：
+
+[1, 1, 2] --> [1, 2, _]
+
+
 ```
 class Solution(object):
     def removeDuplicates(self, nums):

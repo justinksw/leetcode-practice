@@ -28,6 +28,13 @@ class Solution(object):
             "M": 1000,
         }
 
+        # e.g. s = "LVIII"
+        # print:
+        # L, V
+        # V, I
+        # I, I
+        # I, I
+
         for a, b in zip(s, s[1:]):
             
             if roman[a] < roman[b]:

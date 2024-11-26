@@ -50,6 +50,10 @@ class Solution(object):
 
 https://leetcode.com/problems/h-index/?envType=study-plan-v2&envId=top-interview-150
 
+The h-index is defined as the maximum value of h such that the given researcher has published at least h papers that have each been cited at least h times.
+
+這一題確實有點難理解。
+
 ```
 class Solution(object):
     def hIndex(self, citations):

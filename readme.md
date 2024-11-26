@@ -54,7 +54,7 @@ class Solution(object):
 
 # 27. Remove Element
 
-有機會可以用在其他地方。當想要移除數列中的某個數值而位置不重要的之後。
+有機會可以用在其他地方。當想要移除數列中的某個數值（多個 duplicates）而位置不重要的時候。
 
 關於移除某個單個unique的數值，可以參考 [380. Insert Delete GetRandom O(1)](#380-insert-delete-getrandom-o1)
 

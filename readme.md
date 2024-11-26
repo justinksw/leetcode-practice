@@ -78,7 +78,7 @@ class Solution(object):
                 k += 1
 
         # [1, 2, 3] remove 2, --> [1, 3, _] --> k = 2
-        # [2, 3, 3, 2] remove 3, --> [3, 3, _, _] --> k = 2
+        # [2, 3, 3, 2] remove 2, --> [3, 3, _, _] --> k = 2
 
         # _ denote the values we dont care
 

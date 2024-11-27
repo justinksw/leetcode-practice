@@ -28,6 +28,7 @@
 - [11. Container With Most Water](#11-container-with-most-water)
 - [15. 3 Sum](#15-3-sum)
 - [209. Minimum Size Subarray Sum](#209-minimum-size-subarray-sum)
+- [3. Longest Substring Without Repeating Characters](#3-longest-substring-without-repeating-characters)
 
 
 
@@ -787,9 +788,7 @@ class Solution(object):
 
 # 15. 3 Sum
 
-My solution. The time complexity is O(N^2)
-
-原本我還打算抄別人的solution, 結果一submit發現有bug ==, 想不出更好的解法之前 O(N^2) 能解決問題也只能照用。
+My solution. The time complexity is O(N^2).
 
 ```
 class Solution(object):
@@ -855,4 +854,32 @@ class Solution(object):
                 left += 1
         
         return min_len if min_len != float("inf") else 0
+```
+
+# 3. Longest Substring Without Repeating Characters
+
+Beat 20% only, can do better.
+
+```
+class Solution(object):
+    def lengthOfLongestSubstring(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        
+        left = 0
+
+        ret = 0  # return the window length
+
+        for right in range(len(s)):
+
+            if len(s[left : right + 1]) > len(set(s[left : right + 1])):
+                left += 1
+            
+            if len(s[left : right + 1]) == len(set(s[left : right + 1])):
+                if right - left + 1 > ret:
+                    ret = right - left + 1
+
+        return ret
 ```

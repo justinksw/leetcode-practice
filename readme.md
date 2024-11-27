@@ -15,10 +15,19 @@
 - [380. Insert Delete GetRandom O(1)](#380-insert-delete-getrandom-o1)
 - [238. Product of Array Except Self](#238-product-of-array-except-self)
 - [134. Gas Station](#134-gas-station)
+- [135. Candy (Hard)](#135-candy-hard)
 - [13. Roman to Integer](#13-roman-to-integer)
 - [12. Integer to Roman](#12-integer-to-roman)
 - [58. Length of Last Word](#58-length-of-last-word)
 - [14. Longest Common Prefix](#14-longest-common-prefix)
+- [151. Reverse Words in a String](#151-reverse-words-in-a-string)
+- [28. Find the Index of the First Occurrence in a String](#28-find-the-index-of-the-first-occurrence-in-a-string)
+- [125. Valid Palindrome](#125-valid-palindrome)
+- [392. Is Subsequence](#392-is-subsequence)
+- [167. Two Sum II - Input Array Is Sorted](#167-two-sum-ii---input-array-is-sorted)
+- [11. Container With Most Water](#11-container-with-most-water)
+- [15. 3 Sum](#15-3-sum)
+- [209. Minimum Size Subarray Sum](#209-minimum-size-subarray-sum)
 
 
 
@@ -150,7 +159,7 @@ class Solution(object):
 
 # 169. Majority Element
 
-** Hash map **
+**Hash map**
 
 ```
 class Solution(object):
@@ -433,6 +442,53 @@ class Solution(object):
         return start
 ```
 
+# 135. Candy (Hard)
+
+貪婪演算法（英語：greedy algorithm），又稱貪心演算法，是一種在每一步選擇中都採取在當前狀態下最好或最佳（即最有利）的選擇，從而希望導致結果是最好或最佳的演算法。比如在旅行推銷員問題中，如果旅行員每次都選擇最近的城市，那這就是一種貪婪演算法。
+
+The Nuts and Bolts of the Two-Pass Method
+
+```
+class Solution:
+    def candy(self, ratings: List[int]) -> int:
+        n = len(ratings)
+        candies = [1] * n 
+
+        for i in range(1, n):
+            if ratings[i] > ratings[i-1]:
+                candies[i] = candies[i-1] + 1
+
+        for i in range(n-2, -1, -1):
+            if ratings[i] > ratings[i+1]:
+                candies[i] = max(candies[i], candies[i+1] + 1)
+        
+        return sum(candies)
+```
+
+One-Pass Greedy Algorithm: Up-Down-Peak Method
+
+```
+class Solution:
+    def candy(self, ratings: List[int]) -> int:
+        if not ratings:
+            return 0
+        
+        ret, up, down, peak = 1, 0, 0, 0
+        
+        for prev, curr in zip(ratings[:-1], ratings[1:]):
+            if prev < curr:
+                up, down, peak = up + 1, 0, up + 1
+                ret += 1 + up
+            elif prev == curr:
+                up = down = peak = 0
+                ret += 1
+            else:
+                up, down = 0, down + 1
+                ret += 1 + down - int(peak >= down)
+        
+        return ret
+```
+
 # 13. Roman to Integer
 
 ```
@@ -548,6 +604,255 @@ class Solution(object):
         return prefix[:prefix_len]
 ```
 
+# 151. Reverse Words in a String
 
+Note: if " " --> False
 
+```
+class Solution(object):
+    def reverseWords(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
 
+        s = s.strip(" ").split(" ")
+        
+        r = []
+
+        for i in range(len(s)-1, -1, -1):
+            if s[i]:
+                if i != 0:
+                    temp = s[i] + " "
+                else:
+                    temp = s[i]
+
+                r.append(temp)
+
+        return "".join(r)
+```
+
+# 28. Find the Index of the First Occurrence in a String
+
+```
+class Solution(object):
+    def strStr(self, haystack, needle):
+        """
+        :type haystack: str
+        :type needle: str
+        :rtype: int
+        """
+        needle_len = len(needle)
+
+        flag = False
+
+        for i in range(0, len(haystack)):
+            if haystack[i: i + needle_len] == needle:
+                flag = True
+                break
+
+        if flag:
+            return i
+
+        else:
+            return -1 
+```
+
+# 125. Valid Palindrome
+
+Note: Remove all non-alphanumeric characters. Alphanumeric characters include letters and numbers.
+
+"A ma," --> "ama" is poalindrome 
+
+```
+class Solution(object):
+    def isPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+
+        s = s.lower()
+        s = ''.join(char for char in s if char.isalnum())
+        
+        s_len = len(s)
+
+        for i in range(s_len // 2):
+            if s[i] != s[s_len-1-i]:
+                return False
+
+        return True
+```
+
+# 392. Is Subsequence
+
+Need revision on this. ...this question is actually easy.
+
+(1) While loop, two pointers
+
+(2) return the == 
+
+```
+class Solution(object):
+    def isSubsequence(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+
+        sp = tp = 0
+
+        while sp < len(s) and tp < len(t):
+            if s[sp] == t[tp]:
+                sp += 1
+            tp += 1
+        
+        return sp == len(s)
+```
+
+# 167. Two Sum II - Input Array Is Sorted
+
+The last four lines worth remember. The point is, this array is **sorted**.
+
+Two pointers move from (1) left to right, and (2) right to left.
+
+```
+class Solution(object):
+    def twoSum(self, numbers, target):
+        """
+        :type numbers: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        
+        left = 0
+        right = len(numbers) - 1
+
+        while right > left:
+
+            total = numbers[left] + numbers[right]
+            
+            if total == target:
+                return [left + 1, right +1]
+
+            elif total > target:
+                right -= 1
+
+            else:
+                left += 1
+                
+        return False
+```
+
+# 11. Container With Most Water
+
+I use the similar logic in the previous question [167. Two Sum II - Input Array Is Sorted](#167-two-sum-ii---input-array-is-sorted)
+
+Two pointers, left to right, right to left.
+
+```
+class Solution(object):
+    def maxArea(self, height):
+        """
+        :type height: List[int]
+        :rtype: int
+        """
+        
+        left = 0
+        right = len(height) - 1
+
+        max_area = 0
+
+        while right > left:
+            
+            width = right - left
+
+            if height[left] > height[right]:
+
+                area = height[right] * width
+
+                right -= 1
+            
+            else:
+                area = height[left] * width
+
+                left += 1
+
+            if area > max_area:
+                max_area = area
+
+        return max_area
+```
+
+# 15. 3 Sum
+
+My solution. The time complexity is O(N^2)
+
+原本我還打算抄別人的solution, 結果一submit發現有bug ==, 想不出更好的解法之前 O(N^2) 能解決問題也只能照用。
+
+```
+class Solution(object):
+    def threeSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+
+        nums.sort()
+
+        res = []
+
+        for i in range(len(nums)):
+            
+            j = i + 1
+            k = len(nums) - 1
+
+            while j < k:
+                
+                total = nums[i] + nums[j] + nums[k]
+
+                if total == 0:
+                    ans = [nums[i], nums[j], nums[k]]
+                    if ans not in res:
+                        res.append(ans)
+                    j += 1
+                
+                elif total > 0:
+                    k -= 1
+
+                elif total < 0:
+                    j += 1
+
+        return res
+```
+
+# 209. Minimum Size Subarray Sum
+
+題目在於找出最小的長度的滑動窗口，其中的所有數值總和sum等於target。而不是找出任意間隔最小的兩個數字。
+
+這個解法的time complexity是 O(N)
+
+```
+class Solution(object):
+    def minSubArrayLen(self, target, nums):
+        """
+        :type target: int
+        :type nums: List[int]
+        :rtype: int
+        """
+        min_len = float("inf")
+        left = 0
+        cur_sum = 0
+
+        for right in range(len(nums)):
+            cur_sum += nums[right]
+
+            while cur_sum >= target:
+                if right - left + 1 < min_len:
+                    min_len = right - left + 1
+                cur_sum -= nums[left]
+                left += 1
+        
+        return min_len if min_len != float("inf") else 0
+```

@@ -34,6 +34,10 @@
 
 # 88. Merge Sorted Array
 
+Input: nums1 = [1, 2, 3, 0, 0, 0], m = 3, nums2 = [2, 5, 6], n = 3
+
+Output: [1, 2, 2, 3, 5, 6]  # sorted in **non-decreasing** order
+
 ```
 class Solution(object):
     def merge(self, nums1, m, nums2, n):
@@ -42,9 +46,6 @@ class Solution(object):
         nidx = n - 1
 
         right = m + n - 1
-
-        # nums1 = [1, 2, 3, 0, 0, 0]
-        # nums2 = [2, 5, 6]
 
         while nidx >= 0:
             
@@ -67,6 +68,10 @@ class Solution(object):
 有機會可以用在其他地方。當想要移除數列中的某個數值（多個 duplicates）而位置不重要的時候。
 
 關於移除某個單個unique的數值，可以參考 [380. Insert Delete GetRandom O(1)](#380-insert-delete-getrandom-o1)
+
+Input: nums = [3, 2, 2, 3], val = 3
+
+Output: 2, nums = [2, 2, _, _]
 
 ```
 class Solution(object):
@@ -189,6 +194,10 @@ class Solution(object):
 
 # 189. Rotate Array
 
+Input: nums = [1, 2, 3, 4, 5, 6, 7], k = 3
+
+Output: [5, 6, 7, 1, 2, 3, 4]
+
 ```
 class Solution(object):
     def rotate(self, nums, k):
@@ -204,6 +213,10 @@ class Solution(object):
 ```
 
 # 121. Best Time to Buy and Sell Stock
+
+Input: prices = [7, 1, 5, 3, 6, 4]
+
+Output: 5  # Best profit
 
 ```
 class Solution(object):
@@ -232,6 +245,10 @@ class Solution(object):
 
 # 122. Best Time to Buy and Sell Stock II
 
+Input: prices = [7, 1, 5, 3, 6, 4]
+
+Output: 7  # (5-1) + (6-3) Total profit
+
 ```
 class Solution(object):
     def maxProfit(self, prices):
@@ -252,6 +269,8 @@ class Solution(object):
 ```
 
 # 55. Jump Game
+
+Each element represents the **maximum** jump length. 
 
 ```
 class Solution(object):
@@ -277,6 +296,23 @@ class Solution(object):
 ```
 
 # 45. Jump Game II
+
+Jump game I:
+
+Input: nums = [2,3,1,1,4]
+
+Output: true
+
+Explanation: Jump 1 step from index 0 to 1, then 3 steps to the last index.
+
+
+Jump game II:
+
+Input: nums = [2,3,1,1,4]
+
+Output: 2
+
+Explanation: The **minimum** number of jumps to reach the last index is 2. Jump 1 step from index 0 to 1, then 3 steps to the last index.
 
 ```
 class Solution(object):
@@ -392,6 +428,10 @@ class RandomizedSet(object):
 
 # 238. Product of Array Except Self
 
+Input: nums = [1, 2, 3, 4]
+
+Output: [24, 12, 8, 6]
+
 ```
 class Solution(object):
     def productExceptSelf(self, nums):
@@ -420,6 +460,12 @@ class Solution(object):
 ```
 
 # 134. Gas Station
+
+移動的順序是跟隨sequence的。
+
+Input: gas = [1, 2, 3, 4, 5], cost = [3, 4, 5, 1, 2]
+
+Output: 3  # 3 是起點
 
 ```
 class Solution(object):
@@ -609,6 +655,8 @@ class Solution(object):
 
 Note: if " " --> False
 
+"".join(r)  # 這個寫法可以記一下
+
 ```
 class Solution(object):
     def reverseWords(self, s):
@@ -634,6 +682,10 @@ class Solution(object):
 ```
 
 # 28. Find the Index of the First Occurrence in a String
+
+Input: haystack = "sadbutsad", needle = "sad"
+
+Output: 0
 
 ```
 class Solution(object):
@@ -691,7 +743,11 @@ Need revision on this. ...this question is actually easy.
 
 (1) While loop, two pointers
 
-(2) return the == 
+(2) return the ==  # 這兩個寫法都可以記一下
+
+Input: s = "abc", t = "ahbgdc"
+
+Output: true
 
 ```
 class Solution(object):
@@ -717,6 +773,10 @@ class Solution(object):
 The last four lines worth remember. The point is, this array is **sorted**.
 
 Two pointers move from (1) left to right, and (2) right to left.
+
+Input: numbers = [2, 7, 11, 15], target = 9
+
+Output: [1, 2]
 
 ```
 class Solution(object):
@@ -789,6 +849,12 @@ class Solution(object):
 # 15. 3 Sum
 
 My solution. The time complexity is O(N^2).
+
+Find all possible sums of three numbers equal to 0
+
+Input: nums = [-1, 0, 1, 2, -1, -4]
+
+Output: [[-1, -1, 2],[-1, 0, 1]]
 
 ```
 class Solution(object):

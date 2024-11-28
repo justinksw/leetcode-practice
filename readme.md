@@ -29,6 +29,7 @@
 - [15. 3 Sum](#15-3-sum)
 - [209. Minimum Size Subarray Sum](#209-minimum-size-subarray-sum)
 - [3. Longest Substring Without Repeating Characters](#3-longest-substring-without-repeating-characters)
+- [36. Valid Sudoku](#36-valid-sudoku)
 
 
 
@@ -967,4 +968,46 @@ class Solution:
             max_length = max(max_length, end - start + 1)
         
         return max_length
+```
+
+# 36. Valid Sudoku
+
+Beats 50%. Can do better.
+
+Note: learn about the definition of `grid_index`. It could be useful in webpage layout design.
+
+```
+class Solution(object):
+    def isValidSudoku(self, board):
+        # Initialize empty sets to keep track of seen numbers in rows, columns, and subgrids
+        rows = [set() for _ in range(9)]
+        cols = [set() for _ in range(9)]
+        grids = [set() for _ in range(9)]
+
+        for r in range(9):
+            for c in range(9):
+                num = board[r][c]
+
+                if num == ".":
+                    continue
+
+                # Calculate the index for the 3x3 subgrid
+                # === # === # === #
+                #  0     1     2  #
+                #  3     4     5  #
+                #  6     7     8  #
+                # === # === # === #
+
+                grid_index = (r // 3) * 3 + c // 3
+
+                # Check if the number is already seen in the row, column, or subgrid
+                if num in rows[r] or num in cols[c] or num in grids[grid_index]:
+                    return False
+
+                # Add the number to the respective sets
+                rows[r].add(num)
+                cols[c].add(num)
+                grids[grid_index].add(num)
+
+        return True
 ```

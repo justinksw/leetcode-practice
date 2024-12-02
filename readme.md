@@ -31,6 +31,7 @@
 - [3. Longest Substring Without Repeating Characters](#3-longest-substring-without-repeating-characters)
 - [36. Valid Sudoku](#36-valid-sudoku)
 - [54. Spiral Matrix](#54-spiral-matrix)
+- [48. Rotate Image](#48-rotate-image)
 
 
 
@@ -1059,4 +1060,42 @@ class Solution(object):
                 left += 1
 
         return ret
+```
+
+# 48. Rotate Image
+
+You are given an `n x n` 2D matrix, rotate the matrix by 90 degrees (clockwise).
+
+Example matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+
+Output: [[7, 4, 1], [8, 5, 2], [9, 6, 3]]
+
+Note: The matrix should be N x N. can do (1) Transpose (2) Reverse
+
+```
+class Solution(object):
+    def rotate(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: None Do not return anything, modify matrix in-place instead.
+        """
+        
+        # Note: the matrix is n x n
+
+        # Step 1. Transpose the matrix
+
+        for i in range(len(matrix)):
+            for j in range(i+ 1, len(matrix[i])):  
+                # 因為考慮 upper triangle 和 lower triangle 互換, j 由 i + 1 開始
+
+                temp = matrix[i][j]
+
+                matrix[i][j] = matrix[j][i]
+                
+                matrix[j][i] = temp
+
+        # Step 2. Reverse each row
+
+        for i in range(len(matrix)):
+            matrix[i].reverse()
 ```

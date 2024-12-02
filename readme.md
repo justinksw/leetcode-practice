@@ -1022,7 +1022,7 @@ Input: matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 
 Output: [1, 2, 3, 6, 9, 8, 7, 4, 5]
 
-```
+```python
 class Solution(object):
     def spiralOrder(self, matrix):
         """
@@ -1072,7 +1072,7 @@ Output: [[7, 4, 1], [8, 5, 2], [9, 6, 3]]
 
 Note: The matrix should be N x N. can do (1) Transpose (2) Reverse
 
-```
+```python
 class Solution(object):
     def rotate(self, matrix):
         """

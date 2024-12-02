@@ -41,7 +41,7 @@ Input: nums1 = [1, 2, 3, 0, 0, 0], m = 3, nums2 = [2, 5, 6], n = 3
 
 Output: [1, 2, 2, 3, 5, 6]  # sorted in **non-decreasing** order
 
-```
+```python
 class Solution(object):
     def merge(self, nums1, m, nums2, n):
         
@@ -76,7 +76,7 @@ Input: nums = [3, 2, 2, 3], val = 3
 
 Output: 2, nums = [2, 2, _, _]
 
-```
+```python
 class Solution(object):
     def removeElement(self, nums, val):
         """
@@ -118,7 +118,7 @@ class Solution(object):
 [0, 0, 1, 1, 1, 2, 2, 3, 3, 4] --> [0, 1, 2, 3, 4, _, _, _, _, _] --> k = 5
 
 
-```
+```python
 class Solution(object):
     def removeDuplicates(self, nums):
         """
@@ -145,7 +145,7 @@ Given an integer array nums sorted in non-decreasing order, remove some duplicat
 
 [1, 1, 1, 2, 2, 3] --> [1, 1, 2, 2, 3, _]
 
-```
+```python
 class Solution(object):
     def removeDuplicates(self, nums):
         """
@@ -170,7 +170,7 @@ class Solution(object):
 
 **Hash map**
 
-```
+```python
 class Solution(object):
     def majorityElement(self, nums):
         """
@@ -201,7 +201,7 @@ Input: nums = [1, 2, 3, 4, 5, 6, 7], k = 3
 
 Output: [5, 6, 7, 1, 2, 3, 4]
 
-```
+```python
 class Solution(object):
     def rotate(self, nums, k):
         """
@@ -221,7 +221,7 @@ Input: prices = [7, 1, 5, 3, 6, 4]
 
 Output: 5  # Best profit
 
-```
+```python
 class Solution(object):
     def maxProfit(self, prices):
         """
@@ -252,7 +252,7 @@ Input: prices = [7, 1, 5, 3, 6, 4]
 
 Output: 7  # (5-1) + (6-3) Total profit
 
-```
+```python
 class Solution(object):
     def maxProfit(self, prices):
         """
@@ -275,7 +275,7 @@ class Solution(object):
 
 Each element represents the **maximum** jump length. 
 
-```
+```python
 class Solution(object):
     def canJump(self, nums):
         """
@@ -317,7 +317,7 @@ Output: 2
 
 Explanation: The **minimum** number of jumps to reach the last index is 2. Jump 1 step from index 0 to 1, then 3 steps to the last index.
 
-```
+```python
 class Solution(object):
     def jump(self, nums):
         """
@@ -353,7 +353,7 @@ The **h-index** is defined as the maximum value of `h` such that the given resea
 
 這一題確實有點難理解。
 
-```
+```python
 class Solution(object):
     def hIndex(self, citations):
         """
@@ -372,7 +372,7 @@ class Solution(object):
 
 # 380. Insert Delete GetRandom O(1)
 
-```
+```python
 class RandomizedSet(object):
 
     def __init__(self):
@@ -435,7 +435,7 @@ Input: nums = [1, 2, 3, 4]
 
 Output: [24, 12, 8, 6]
 
-```
+```python
 class Solution(object):
     def productExceptSelf(self, nums):
         """
@@ -470,7 +470,7 @@ Input: gas = [1, 2, 3, 4, 5], cost = [3, 4, 5, 1, 2]
 
 Output: 3  # 3 是起點
 
-```
+```python
 class Solution(object):
     def canCompleteCircuit(self, gas, cost):
         """
@@ -498,7 +498,7 @@ class Solution(object):
 
 The Nuts and Bolts of the Two-Pass Method
 
-```
+```python
 class Solution:
     def candy(self, ratings: List[int]) -> int:
         n = len(ratings)
@@ -517,7 +517,7 @@ class Solution:
 
 One-Pass Greedy Algorithm: Up-Down-Peak Method
 
-```
+```python
 class Solution:
     def candy(self, ratings: List[int]) -> int:
         if not ratings:
@@ -541,7 +541,7 @@ class Solution:
 
 # 13. Roman to Integer
 
-```
+```python
 class Solution(object):
     def romanToInt(self, s):
         """
@@ -582,7 +582,7 @@ class Solution(object):
 
 重點在於`value_symbols`
 
-```
+```python
 class Solution(object):
     def intToRoman(self, num):
         """
@@ -618,7 +618,7 @@ class Solution(object):
 
 # 58. Length of Last Word
 
-```
+```python
 class Solution(object):
     def lengthOfLastWord(self, s):
         """
@@ -631,7 +631,7 @@ class Solution(object):
 
 # 14. Longest Common Prefix
 
-```
+```python
 class Solution(object):
     def longestCommonPrefix(self, strs):
         """
@@ -660,7 +660,7 @@ Note: if " " --> False
 
 "".join(r)  # 這個寫法可以記一下
 
-```
+```python
 class Solution(object):
     def reverseWords(self, s):
         """
@@ -690,7 +690,7 @@ Input: haystack = "sadbutsad", needle = "sad"
 
 Output: 0
 
-```
+```python
 class Solution(object):
     def strStr(self, haystack, needle):
         """
@@ -720,7 +720,7 @@ Note: Remove all non-alphanumeric characters. Alphanumeric characters include le
 
 "A ma," --> "ama" is poalindrome 
 
-```
+```python
 class Solution(object):
     def isPalindrome(self, s):
         """
@@ -752,7 +752,7 @@ Input: s = "abc", t = "ahbgdc"
 
 Output: true
 
-```
+```python
 class Solution(object):
     def isSubsequence(self, s, t):
         """
@@ -781,7 +781,7 @@ Input: numbers = [2, 7, 11, 15], target = 9
 
 Output: [1, 2]
 
-```
+```python
 class Solution(object):
     def twoSum(self, numbers, target):
         """
@@ -815,7 +815,7 @@ I use the similar logic in the previous question [167. Two Sum II - Input Array 
 
 Two pointers, left to right, right to left.
 
-```
+```python
 class Solution(object):
     def maxArea(self, height):
         """
@@ -859,7 +859,7 @@ Input: nums = [-1, 0, 1, 2, -1, -4]
 
 Output: [[-1, -1, 2],[-1, 0, 1]]
 
-```
+```python
 class Solution(object):
     def threeSum(self, nums):
         """
@@ -901,7 +901,7 @@ class Solution(object):
 
 這個解法的time complexity是 O(N)
 
-```
+```python
 class Solution(object):
     def minSubArrayLen(self, target, nums):
         """
@@ -929,7 +929,7 @@ class Solution(object):
 
 Beat 20% only, can do better.
 
-```
+```python
 class Solution(object):
     def lengthOfLongestSubstring(self, s):
         """
@@ -955,7 +955,7 @@ class Solution(object):
 
 This is generated from Copilot, beat 30%. looks much prettier.
 
-```
+```python
 class Solution:
     def lengthOfLongestSubstring(self, s):
         char_index_map = {}
@@ -978,7 +978,7 @@ Beats 50%. Can do better.
 
 Note: learn about the definition of `grid_index`. It could be useful in webpage layout design.
 
-```
+```python
 class Solution(object):
     def isValidSudoku(self, board):
         # Initialize empty sets to keep track of seen numbers in rows, columns, and subgrids

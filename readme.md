@@ -1,6 +1,5 @@
 [**Leetcode Interview Questions 150**](https://leetcode.com/studyplan/top-interview-150/)
 
-
 - [88. Merge Sorted Array](#88-merge-sorted-array)
 - [27. Remove Element](#27-remove-element)
 - [26. Remove Duplicates from Sorted Array](#26-remove-duplicates-from-sorted-array)
@@ -32,7 +31,6 @@
 - [36. Valid Sudoku](#36-valid-sudoku)
 - [54. Spiral Matrix](#54-spiral-matrix)
 - [48. Rotate Image](#48-rotate-image)
-
 
 
 # 88. Merge Sorted Array

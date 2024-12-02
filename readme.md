@@ -30,6 +30,7 @@
 - [209. Minimum Size Subarray Sum](#209-minimum-size-subarray-sum)
 - [3. Longest Substring Without Repeating Characters](#3-longest-substring-without-repeating-characters)
 - [36. Valid Sudoku](#36-valid-sudoku)
+- [54. Spiral Matrix](#54-spiral-matrix)
 
 
 
@@ -1010,4 +1011,52 @@ class Solution(object):
                 grids[grid_index].add(num)
 
         return True
+```
+
+# 54. Spiral Matrix
+
+加入兩個IF Condition 考慮矩陣不是正方形的時候的情況
+
+Input: matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+
+Output: [1, 2, 3, 6, 9, 8, 7, 4, 5]
+
+```
+class Solution(object):
+    def spiralOrder(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: List[int]
+        """
+        ret = []
+
+        top, bottom = 0,len(matrix) - 1
+        left, right = 0, len(matrix[0]) - 1
+
+        while top <= bottom and left <= right:
+            
+            # Left to Right
+            for i in range(left, right + 1):
+                ret.append(matrix[top][i])
+            top += 1
+
+            # Top to Bottom
+            for i in range(top, bottom + 1):
+                ret.append(matrix[i][right])
+            right -= 1
+
+            # 需要這兩個 IF condition 的原因是given matrix 可能不是正方形。
+            # Right to Left
+            if top <= bottom:  # top <= bottom 的情況下才有需要做反向的右到左
+                for i in range(right, left - 1, -1):
+                    ret.append(matrix[bottom][i])
+                bottom -= 1
+
+            # Bottom to Top
+            if left <= right:  # left <= right 的情況下才有需要做反向的下到上
+                for i in range(bottom, top - 1, -1):
+                    ret.append(matrix[i][left])
+                left += 1
+
+        return ret
 ```

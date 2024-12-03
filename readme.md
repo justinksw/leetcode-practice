@@ -31,6 +31,8 @@
 - [36. Valid Sudoku](#36-valid-sudoku)
 - [54. Spiral Matrix](#54-spiral-matrix)
 - [48. Rotate Image](#48-rotate-image)
+- [73. Set Matrix Zeroes](#73-set-matrix-zeroes)
+- [289. Game of Life](#289-game-of-life)
 
 
 # 88. Merge Sorted Array
@@ -1096,4 +1098,80 @@ class Solution(object):
 
         for i in range(len(matrix)):
             matrix[i].reverse()
+```
+
+# 73. Set Matrix Zeroes
+
+Input: matrix = [[1, 1, 1],[1, 0, 1],[1, 1, 1]]
+
+Output: [[1, 0, 1],[0, 0, 0],[1, 0, 1]]
+
+```python
+class Solution(object):
+    def setZeroes(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: None Do not return anything, modify matrix in-place instead.
+        """
+        
+        row = []
+        col = []
+        
+        for i in range(len(matrix)):
+            for j in range(len(matrix[0])):
+
+                if matrix[i][j] == 0:
+
+                    row.append(i)
+                    col.append(j)
+
+        for r in row:
+            for i in range(len(matrix[r])):
+
+                matrix[r][i] = 0
+
+        for c in col:
+            for i in range(len(matrix)):
+                
+                matrix[i][c] = 0
+```
+
+# 289. Game of Life
+
+Note: Check the boundaries with the IF condition.
+
+Input: board = [[0, 1, 0],[0, 0, 1],[1, 1, 1],[0, 0, 0]]
+
+Output: [[0, 0, 0],[1, 0, 1],[0, 1, 1],[0, 1, 0]]
+
+```python
+class Solution(object):
+    def gameOfLife(self, board):
+        """
+        :type board: List[List[int]]
+        :rtype: None Do not return anything, modify board in-place instead.
+        """
+        
+        m, n = len(board), len(board[0])
+        directions = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]
+        
+        copy_board = [[board[i][j] for j in range(n)] for i in range(m)]
+        
+        for i in range(m):
+            for j in range(n):
+                live_neighbors = 0
+                
+                for direction in directions:
+                    r, c = i + direction[0], j + direction[1]
+
+                    # Check the boundaries here.
+                    if (0 <= r < m) and (0 <= c < n) and (copy_board[r][c] == 1):
+                        live_neighbors += 1
+                
+                if copy_board[i][j] == 1:
+                    if live_neighbors < 2 or live_neighbors > 3:
+                        board[i][j] = 0  # Cell dies
+                else:
+                    if live_neighbors == 3:
+                        board[i][j] = 1  # Cell becomes alive
 ```

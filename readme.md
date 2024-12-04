@@ -36,6 +36,7 @@
 - [383. Ransom Note](#383-ransom-note)
 - [205. Isomorphic Strings](#205-isomorphic-strings)
 - [290. Word Pattern](#290-word-pattern)
+- [](#)
 
 
 # 88. Merge Sorted Array
@@ -1272,7 +1273,11 @@ class Solution(object):
 
 # 290. Word Pattern
 
-11%, Two hashmap.
+Input: pattern = "abba", s = "dog cat cat dog"
+
+Output: true
+
+11%, solution one uses two hashmap.
 
 Learn solution two, it uses only one hashmap.
 
@@ -1325,5 +1330,54 @@ class Solution(object):
             elif w_to_p[words[i]] != p[i]: 
                 return False
 
+        return True
+```
+
+# 
+
+Learn: XOR `^` Bitwise operation
+
+- ( a ^ a = 0 ) (XOR-ing a number with itself results in 0).
+- ( a ^ 0 = a ) (XOR-ing a number with 0 leaves it unchanged).
+
+If two strings are anagrams, XOR-ing all their characters will result in 0 because every character in one string will "cancel out" the same character in the other.
+
+1. XOR all characters in both strings.
+2. If the result is 0, the strings are anagrams.
+3. Additionally, count the total character frequency to handle cases where strings of the same length have different characters but still result in XOR 0.
+
+Learn `ord()` in Python
+
+- ord('a') -> 97
+- ord('b') -> 98
+
+Note that the Beats percentage in Leetcode consider the language, Pyhton is lower than C++
+
+```python
+class Solution(object):
+    def isAnagram(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        
+        if len(s) != len(t):
+            return False
+        
+        xor_sum = 0
+        frequency = [0] * 26
+        
+        for i in range(len(s)):
+            xor_sum ^= ord(s[i]) ^ ord(t[i]) # XOR both characters
+            frequency[ord(s[i]) - ord('a')] += 1 # Increment for s
+            frequency[ord(t[i]) - ord('a')] -= 1 # Decrement for t
+        
+        if xor_sum != 0: # If XOR isn't zero, they're not anagrams
+            return False
+        
+        if any(freq != 0 for freq in frequency): # Check frequency counts
+            return False
+        
         return True
 ```

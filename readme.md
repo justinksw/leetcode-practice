@@ -36,7 +36,7 @@
 - [383. Ransom Note](#383-ransom-note)
 - [205. Isomorphic Strings](#205-isomorphic-strings)
 - [290. Word Pattern](#290-word-pattern)
-- [](#)
+- [242. Valid Anagram](#242-valid-anagram)
 
 
 # 88. Merge Sorted Array
@@ -1333,7 +1333,9 @@ class Solution(object):
         return True
 ```
 
-# 
+# 242. Valid Anagram
+
+Anagram example: 'listen' ~= 'silent'
 
 Learn: XOR `^` Bitwise operation
 

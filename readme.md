@@ -33,6 +33,9 @@
 - [48. Rotate Image](#48-rotate-image)
 - [73. Set Matrix Zeroes](#73-set-matrix-zeroes)
 - [289. Game of Life](#289-game-of-life)
+- [383. Ransom Note](#383-ransom-note)
+- [205. Isomorphic Strings](#205-isomorphic-strings)
+- [290. Word Pattern](#290-word-pattern)
 
 
 # 88. Merge Sorted Array
@@ -1174,4 +1177,153 @@ class Solution(object):
                 else:
                     if live_neighbors == 3:
                         board[i][j] = 1  # Cell becomes alive
+```
+
+# 383. Ransom Note
+
+Learn solution 2.
+
+Syntax: string.replace(oldvalue, newvalue, count)
+
+Note: count (Optional.) A number specifying how many occurrences of the old value you want to replace. Default is all occurrences
+
+Beats 38%
+
+```python
+class Solution(object):
+    def canConstruct(self, ransomNote, magazine):
+        """
+        :type ransomNote: str
+        :type magazine: str
+        :rtype: bool
+        """
+        magazine_dict = {}
+
+        for i in magazine:
+            magazine_dict[i] = magazine_dict.get(i, 0) + 1
+
+        for i in ransomNote:
+            if not magazine_dict.get(i, False):
+                return False
+            
+            magazine_dict[i] -= 1
+
+            if magazine_dict[i] < 0:
+                return False
+        
+        return True
+```
+
+Beats 97%
+
+```python
+class Solution:
+    def canConstruct(self, ransomNote, magazine):
+        
+        for element in ransomNote: 
+            if element not in magazine:
+                return False
+            else:
+                magazine = magazine.replace(element, "", 1)
+        
+                # For example, "aab".replace("a", "", 1) -> "ab"
+
+        return True
+```
+
+# 205. Isomorphic Strings
+
+38.25%, can do better.
+
+Input: s = "egg", t = "add"
+
+Output: true
+
+Learn the IF conditon:
+
+if (s_char in s_to_t and s_to_t[s_char] != t_char) or (t_char in t_to_s and t_to_s[t_char] != s_char): return False
+
+Instead of counting number, map the characters.
+
+```python
+class Solution(object):
+    def isIsomorphic(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+
+        if len(s) != len(t):
+            return False
+        
+        s_to_t = {}
+        t_to_s = {}
+
+        for s_char, t_char in zip(s, t):
+            if (s_char in s_to_t and s_to_t[s_char] != t_char) or (t_char in t_to_s and t_to_s[t_char] != s_char): 
+                return False
+            
+            s_to_t[s_char] = t_char
+            t_to_s[t_char] = s_char
+        
+        return True
+```
+
+# 290. Word Pattern
+
+11%, Two hashmap.
+
+Learn solution two, it uses only one hashmap.
+
+```python
+class Solution(object):
+    def wordPattern(self, pattern, s):
+        """
+        :type pattern: str
+        :type s: str
+        :rtype: bool
+        """
+        
+        s = s.split(" ")
+
+        if len(s) != len(pattern):
+            return False
+
+        p_dict = {}
+        s_dict = {}
+
+        for i, j in zip(pattern, s):
+
+            if (i in p_dict and p_dict[i] != j) or (j in s_dict and s_dict[j] != i):
+                return False
+
+            p_dict[i] = j
+            s_dict[j] = i
+
+        return True
+```
+
+! Beats 100%
+
+```python
+class Solution(object):
+    def wordPattern(self, p, s):
+    
+        words, w_to_p = s.split(' '), dict()
+
+        if len(p) != len(words): return False
+
+        # for the case w = ['dog', 'cat'] and p = 'aa'
+        if len(set(p)) != len(set(words)): return False  
+
+        for i in range(len(words)):
+            
+            if words[i] not in w_to_p: 
+                w_to_p[words[i]] = p[i]
+
+            elif w_to_p[words[i]] != p[i]: 
+                return False
+
+        return True
 ```

@@ -37,13 +37,13 @@
 - [205. Isomorphic Strings](#205-isomorphic-strings)
 - [290. Word Pattern](#290-word-pattern)
 - [242. Valid Anagram](#242-valid-anagram)
+- [1. Two Sum](#1-two-sum)
 
 
 # 88. Merge Sorted Array
 
-Input: nums1 = [1, 2, 3, 0, 0, 0], m = 3, nums2 = [2, 5, 6], n = 3
-
-Output: [1, 2, 2, 3, 5, 6]  # sorted in **non-decreasing** order
+- Input: nums1 = [1, 2, 3, 0, 0, 0], m = 3, nums2 = [2, 5, 6], n = 3
+- Output: [1, 2, 2, 3, 5, 6]  # sorted in **non-decreasing** order
 
 ```python
 class Solution(object):
@@ -76,9 +76,8 @@ class Solution(object):
 
 關於移除某個單個unique的數值，可以參考 [380. Insert Delete GetRandom O(1)](#380-insert-delete-getrandom-o1)
 
-Input: nums = [3, 2, 2, 3], val = 3
-
-Output: 2, nums = [2, 2, _, _]
+- Input: nums = [3, 2, 2, 3], val = 3
+- Output: 2, nums = [2, 2, _, _]
 
 ```python
 class Solution(object):
@@ -201,9 +200,8 @@ class Solution(object):
 
 # 189. Rotate Array
 
-Input: nums = [1, 2, 3, 4, 5, 6, 7], k = 3
-
-Output: [5, 6, 7, 1, 2, 3, 4]
+- Input: nums = [1, 2, 3, 4, 5, 6, 7], k = 3
+- Output: [5, 6, 7, 1, 2, 3, 4]
 
 ```python
 class Solution(object):
@@ -221,9 +219,8 @@ class Solution(object):
 
 # 121. Best Time to Buy and Sell Stock
 
-Input: prices = [7, 1, 5, 3, 6, 4]
-
-Output: 5  # Best profit
+- Input: prices = [7, 1, 5, 3, 6, 4]
+- Output: 5  # Best profit
 
 ```python
 class Solution(object):
@@ -252,9 +249,8 @@ class Solution(object):
 
 # 122. Best Time to Buy and Sell Stock II
 
-Input: prices = [7, 1, 5, 3, 6, 4]
-
-Output: 7  # (5-1) + (6-3) Total profit
+- Input: prices = [7, 1, 5, 3, 6, 4]
+- Output: 7  # (5-1) + (6-3) Total profit
 
 ```python
 class Solution(object):
@@ -306,18 +302,16 @@ class Solution(object):
 
 Jump game I:
 
-Input: nums = [2,3,1,1,4]
-
-Output: true
+- Input: nums = [2, 3, 1, 1, 4]
+- Output: true
 
 Explanation: Jump 1 step from index 0 to 1, then 3 steps to the last index.
 
 
 Jump game II:
 
-Input: nums = [2,3,1,1,4]
-
-Output: 2
+- Input: nums = [2, 3, 1, 1, 4]
+- Output: 2
 
 Explanation: The **minimum** number of jumps to reach the last index is 2. Jump 1 step from index 0 to 1, then 3 steps to the last index.
 
@@ -435,9 +429,8 @@ class RandomizedSet(object):
 
 # 238. Product of Array Except Self
 
-Input: nums = [1, 2, 3, 4]
-
-Output: [24, 12, 8, 6]
+- Input: nums = [1, 2, 3, 4]
+- Output: [24, 12, 8, 6]
 
 ```python
 class Solution(object):
@@ -470,9 +463,8 @@ class Solution(object):
 
 移動的順序是跟隨sequence的。
 
-Input: gas = [1, 2, 3, 4, 5], cost = [3, 4, 5, 1, 2]
-
-Output: 3  # 3 是起點
+- Input: gas = [1, 2, 3, 4, 5], cost = [3, 4, 5, 1, 2]
+- Output: 3  # 3 是起點
 
 ```python
 class Solution(object):
@@ -690,9 +682,8 @@ class Solution(object):
 
 # 28. Find the Index of the First Occurrence in a String
 
-Input: haystack = "sadbutsad", needle = "sad"
-
-Output: 0
+- Input: haystack = "sadbutsad", needle = "sad"
+- Output: 0
 
 ```python
 class Solution(object):
@@ -752,9 +743,8 @@ Need revision on this. ...this question is actually easy.
 
 (2) return the ==  # 這兩個寫法都可以記一下
 
-Input: s = "abc", t = "ahbgdc"
-
-Output: true
+- Input: s = "abc", t = "ahbgdc"
+- Output: true
 
 ```python
 class Solution(object):
@@ -781,9 +771,8 @@ The last four lines worth remember. The point is, this array is **sorted**.
 
 Two pointers move from (1) left to right, and (2) right to left.
 
-Input: numbers = [2, 7, 11, 15], target = 9
-
-Output: [1, 2]
+- Input: numbers = [2, 7, 11, 15], target = 9
+- Output: [1, 2]
 
 ```python
 class Solution(object):
@@ -859,9 +848,8 @@ My solution. The time complexity is O(N^2).
 
 Find all possible sums of three numbers equal to 0
 
-Input: nums = [-1, 0, 1, 2, -1, -4]
-
-Output: [[-1, -1, 2],[-1, 0, 1]]
+- Input: nums = [-1, 0, 1, 2, -1, -4]
+- Output: [[-1, -1, 2],[-1, 0, 1]]
 
 ```python
 class Solution(object):
@@ -1022,9 +1010,8 @@ class Solution(object):
 
 加入兩個IF Condition 考慮矩陣不是正方形的時候的情況
 
-Input: matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-
-Output: [1, 2, 3, 6, 9, 8, 7, 4, 5]
+- Input: matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+- Output: [1, 2, 3, 6, 9, 8, 7, 4, 5]
 
 ```python
 class Solution(object):
@@ -1106,9 +1093,8 @@ class Solution(object):
 
 # 73. Set Matrix Zeroes
 
-Input: matrix = [[1, 1, 1],[1, 0, 1],[1, 1, 1]]
-
-Output: [[1, 0, 1],[0, 0, 0],[1, 0, 1]]
+- Input: matrix = [[1, 1, 1],[1, 0, 1],[1, 1, 1]]
+- Output: [[1, 0, 1],[0, 0, 0],[1, 0, 1]]
 
 ```python
 class Solution(object):
@@ -1144,9 +1130,8 @@ class Solution(object):
 
 Note: Check the boundaries with the IF condition.
 
-Input: board = [[0, 1, 0],[0, 0, 1],[1, 1, 1],[0, 0, 0]]
-
-Output: [[0, 0, 0],[1, 0, 1],[0, 1, 1],[0, 1, 0]]
+- Input: board = [[0, 1, 0],[0, 0, 1],[1, 1, 1],[0, 0, 0]]
+- Output: [[0, 0, 0],[1, 0, 1],[0, 1, 1],[0, 1, 0]]
 
 ```python
 class Solution(object):
@@ -1236,9 +1221,8 @@ class Solution:
 
 38.25%, can do better.
 
-Input: s = "egg", t = "add"
-
-Output: true
+- Input: s = "egg", t = "add"
+- Output: true
 
 Learn the IF conditon:
 
@@ -1273,9 +1257,8 @@ class Solution(object):
 
 # 290. Word Pattern
 
-Input: pattern = "abba", s = "dog cat cat dog"
-
-Output: true
+- Input: pattern = "abba", s = "dog cat cat dog"
+- Output: true
 
 11%, solution one uses two hashmap.
 
@@ -1337,7 +1320,7 @@ class Solution(object):
 
 Anagram example: 'listen' ~= 'silent'
 
-Learn: XOR `^` Bitwise operation
+Learn: XOR `^` **Bitwise** operation; In Python, XOR is a bitwise operator that is also known as **Exclusive OR**.
 
 - ( a ^ a = 0 ) (XOR-ing a number with itself results in 0).
 - ( a ^ 0 = a ) (XOR-ing a number with 0 leaves it unchanged).
@@ -1383,3 +1366,38 @@ class Solution(object):
         
         return True
 ```
+
+# 1. Two Sum
+
+This is really smart.
+
+- Input: nums = [2, 7, 11, 15], target = 9
+- Output: [0, 1]
+
+
+Copilot explaination:
+
+This function uses a hash map (dictionary) to store the indices of the numbers we've seen so far. As we iterate through the list, for each number, we calculate its complement (the number that, when added to the current number, equals the target). If the complement is already in our hash map, it means we’ve found the pair of numbers that add up to the target, and we return their indices. If not, we store the current number and its index in the hash map.
+
+```python
+class Solution(object):
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+
+        num_to_index = {}
+
+        for i, num in enumerate(nums):
+
+            complement = target - num
+
+            if complement in num_to_index:
+                return [num_to_index[complement], i]
+
+            num_to_index[num] = i
+        return []
+```
+

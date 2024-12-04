@@ -1304,7 +1304,7 @@ class Solution(object):
         return True
 ```
 
-! Beats 100%
+! Beats 100%; Uses single hashmap.
 
 ```python
 class Solution(object):

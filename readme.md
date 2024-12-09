@@ -39,6 +39,8 @@
 - [242. Valid Anagram](#242-valid-anagram)
 - [1. Two Sum](#1-two-sum)
 - [202. Happy Number (Cycle Detection)](#202-happy-number-cycle-detection)
+- [219. Contains Duplicate II](#219-contains-duplicate-ii)
+- [128. Longest Consecutive Sequence](#128-longest-consecutive-sequence)
 
 
 # 88. Merge Sorted Array
@@ -1404,7 +1406,7 @@ class Solution(object):
 
 # 202. Happy Number (Cycle Detection)
 
-做到有點迷。之後可以再重新做一次這一題。
+做到有點迷。之後可以再重新做一次這一題。Cycle Detection Algorithm.
 
 - Input: n = 19
 - Output: true
@@ -1438,4 +1440,62 @@ class Solution(object):
             fast = get_next(get_next(fast))
         
         return fast == 1
+```
+
+# 219. Contains Duplicate II
+
+- Input: nums = [1, 2, 3, 1], k = 3
+- Output: true
+
+```python
+class Solution(object):
+    def containsNearbyDuplicate(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: bool
+        """
+
+        num_hash = {}
+
+        for i, n in enumerate(nums):
+
+            if n in num_hash and i - num_hash[n] <= k:
+                return True
+
+            num_hash[n] = i
+        return False
+```
+
+# 128. Longest Consecutive Sequence
+
+- Input: nums = [100, 4, 200, 1, 3, 2]
+- Output: 4
+- Explanation: The longest consecutive elements sequence is [1, 2, 3, 4]. Therefore its length is 4.
+
+```python
+class Solution(object):
+    def longestConsecutive(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if not nums:
+            return 0
+        
+        num_set = set(nums)
+        longest_streak = 0
+        
+        for num in num_set:
+            if num - 1 not in num_set:  # find start num of consecutive sequences
+                current_num = num
+                current_streak = 1
+                
+                while current_num + 1 in num_set:
+                    current_num += 1
+                    current_streak += 1
+                
+                longest_streak = max(longest_streak, current_streak)
+        
+        return longest_streak
 ```

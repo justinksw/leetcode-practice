@@ -41,6 +41,9 @@
 - [202. Happy Number (Cycle Detection)](#202-happy-number-cycle-detection)
 - [219. Contains Duplicate II](#219-contains-duplicate-ii)
 - [128. Longest Consecutive Sequence](#128-longest-consecutive-sequence)
+- [228. Summary Ranges](#228-summary-ranges)
+- [56. Merge Intervals (Greedy Algorithm)](#56-merge-intervals-greedy-algorithm)
+- [57. Insert Interval](#57-insert-interval)
 
 
 # 88. Merge Sorted Array
@@ -1473,6 +1476,8 @@ class Solution(object):
 - Output: 4
 - Explanation: The longest consecutive elements sequence is [1, 2, 3, 4]. Therefore its length is 4.
 
+Note: The point is to find the starting num. `if num - 1 not in num_set`
+
 ```python
 class Solution(object):
     def longestConsecutive(self, nums):
@@ -1498,4 +1503,108 @@ class Solution(object):
                 longest_streak = max(longest_streak, current_streak)
         
         return longest_streak
+```
+
+# 228. Summary Ranges
+
+- Input: nums = [0, 1, 2, 4, 5, 7]
+- Output: ["0->2", "4->5", "7"]
+
+```python
+class Solution(object):
+    def summaryRanges(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[str]
+        """
+        nums = set(nums)
+        nums = sorted(nums)
+
+        ret = []
+
+        for n in nums:
+            temp = ""
+            if n - 1 not in nums:  # This is a start
+                _n = n
+                temp += "{}".format(_n)
+                
+                c = 0
+                while True:
+                    _n += 1
+                    c += 1
+
+                    if _n not in nums:
+                        if c > 1:
+                            temp += "->{}".format(_n-1)
+                        break
+
+                ret.append(temp)
+        return ret
+```
+
+# 56. Merge Intervals (Greedy Algorithm)
+
+- Input: intervals = [[1, 3], [2, 6], [8, 10], [15, 18]]
+- Output: [[1, 6], [8, 10], [15, 18]]
+
+重點在於：
+1. Sort
+2. 活用 Python `Max()`
+
+
+```python
+class Solution(object):
+    def merge(self, intervals):
+        """
+        :type intervals: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        # Sort the intervals based on the starting point
+        intervals.sort(key=lambda x: x[0])
+
+        merged = []
+        
+        for interval in intervals:
+            # If the merged list is empty or the current interval does not overlap with the previous one
+            if not merged or merged[-1][1] < interval[0]:
+                merged.append(interval)
+            else:
+                # There is overlap, so we merge the current interval with the previous one
+                merged[-1][1] = max(merged[-1][1], interval[1])
+        
+        return merged
+```
+
+# 57. Insert Interval
+
+我的解法和上一題一樣，但是可能有更好的解法。
+
+- Input: intervals = [[1, 3], [6, 9]], newInterval = [2, 5]
+- Output: [[1, 5], [6, 9]]
+
+```python
+class Solution(object):
+    def insert(self, intervals, newInterval):
+        """
+        :type intervals: List[List[int]]
+        :type newInterval: List[int]
+        :rtype: List[List[int]]
+        """
+
+        intervals.append(newInterval)
+
+        # Sort the intervals based on the starting point
+        intervals.sort(key=lambda x: x[0])
+
+        merged = []
+        
+        for interval in intervals:
+            # If the merged list is empty or the current interval does not overlap with the previous one
+            if not merged or merged[-1][1] < interval[0]:
+                merged.append(interval)
+            else:
+                # There is overlap, so we merge the current interval with the previous one
+                merged[-1][1] = max(merged[-1][1], interval[1])
+        
+        return merged
 ```

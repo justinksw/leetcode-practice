@@ -50,6 +50,7 @@
 - [150. Evaluate Reverse Polish Notation](#150-evaluate-reverse-polish-notation)
 - [141. Linked List Cycle](#141-linked-list-cycle)
 - [2. Add Two Numbers](#2-add-two-numbers)
+- [21. Merge Two Sorted Lists](#21-merge-two-sorted-lists)
 
 
 # 88. Merge Sorted Array
@@ -1873,4 +1874,29 @@ class Solution:
 #     result = result.next
 ```
 
+# 21. Merge Two Sorted Lists
 
+- Input: list1 = [1, 2, 4], list2 = [1, 3, 4]
+- Output: [1, 1, 2, 3, 4, 4]
+
+```python
+class Solution:
+    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+
+        dummy_head = ListNode()
+        current = dummy_head
+        
+        while list1 and list2:
+            if list1.val <= list2.val:
+                current.next = list1
+                list1 = list1.next
+            else:
+                current.next = list2
+                list2 = list2.next
+            current = current.next
+        
+        # If one of the lists is not empty, append it
+        current.next = list1 if list1 else list2
+        
+        return dummy_head.next
+```

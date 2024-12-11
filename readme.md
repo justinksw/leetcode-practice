@@ -48,6 +48,7 @@
 - [71. Simplify Path](#71-simplify-path)
 - [155. Min Stack](#155-min-stack)
 - [150. Evaluate Reverse Polish Notation](#150-evaluate-reverse-polish-notation)
+- [141. Linked List Cycle](#141-linked-list-cycle)
 
 
 # 88. Merge Sorted Array
@@ -1746,11 +1747,15 @@ class MinStack(object):
 ```python
 class Solution:
     def evalRPN(self, tokens: List[str]) -> int:
+ 
         stack = []
+ 
         for token in tokens:
             if token in ("+", "-", "*", "/"):
+ 
                 b = stack.pop()
                 a = stack.pop()
+ 
                 if token == "+":
                     stack.append(a + b)
                 elif token == "-":
@@ -1759,8 +1764,37 @@ class Solution:
                     stack.append(a * b)
                 elif token == "/":
                     stack.append(int(a / b))
+ 
             else:
                 stack.append(int(token))
+ 
         return stack[0]
 ```
+
+# 141. Linked List Cycle
+
+**Floyd's Cycle-Finding Algorithm**
+
+Two pointers, one slow (one step), one fast (two steps). If they meet each other, there is a circle in the list.
+
+```python
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+class Solution:
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        fast = head
+        slow = head
+
+        while fast and fast.next:
+            fast = fast.next.next
+            slow = slow.next
+
+            if fast == slow:
+                return True
+
+        return False
+```
+
 

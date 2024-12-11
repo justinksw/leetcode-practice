@@ -44,6 +44,10 @@
 - [228. Summary Ranges](#228-summary-ranges)
 - [56. Merge Intervals (Greedy Algorithm)](#56-merge-intervals-greedy-algorithm)
 - [57. Insert Interval](#57-insert-interval)
+- [20. Valid Parentheses](#20-valid-parentheses)
+- [71. Simplify Path](#71-simplify-path)
+- [155. Min Stack](#155-min-stack)
+- [150. Evaluate Reverse Polish Notation](#150-evaluate-reverse-polish-notation)
 
 
 # 88. Merge Sorted Array
@@ -1608,3 +1612,155 @@ class Solution(object):
         
         return merged
 ```
+
+# 20. Valid Parentheses
+
+這個寫法只能學。確實是想不出來可以這樣寫。
+
+- Input: s = "()[]{}"
+- Output: true
+<br/><br/>
+- Input: s = "(]"
+- Output: false
+
+```python
+class Solution(object):
+    def isValid(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        stack = []
+        bracket_map = {')': '(', '}': '{', ']': '['}
+        
+        for char in s:
+            if char in bracket_map:
+                top_element = stack.pop() if stack else '#'
+                if bracket_map[char] != top_element:
+                    return False
+            else:
+                stack.append(char)
+        
+        return not stack
+```
+
+# 71. Simplify Path
+
+! Important, Learn the data structure of **Stack**.
+
+Definition: A stack is a linear data structure in which the insertions and deletions are allowed only at the end, called the top of the stack.
+
+Implementation in Python:
+
+- add data to stack: append
+- access data in stack: pop
+<br/><br/>
+- Input: path = "/.../a/../b/c/../d/./"
+- Output: "/.../b/d"
+
+```python
+class Solution(object):
+    def simplifyPath(self, path):
+        """
+        :type path: str
+        :rtype: str
+        """
+        stack = []
+        components = path.split('/')
+        
+        for component in components:
+            if component == '..':
+                if stack:
+                    stack.pop()
+            elif component and component != '.':
+                stack.append(component)
+        
+        simplified_path = '/' + '/'.join(stack)
+        return simplified_path
+```
+
+# 155. Min Stack
+
+Time complexity: O(1)!
+
+重點在於每一次加入新的element的時候，都保持追蹤目前最小值，並把目前最小值放在最頂。
+
+在數據結構上，設計兩條並列的Stack。
+
+
+```python
+class MinStack(object):
+
+    def __init__(self):
+        self.stack = []
+
+    def push(self, val):
+        """
+        :type val: int
+        :rtype: None
+        """
+        current_min = self.getMin()
+        if current_min == None or val < current_min:
+            current_min = val
+
+        self.stack.append([val, current_min])
+        return None
+
+    def pop(self):
+        """
+        :rtype: None
+        """
+        self.stack.pop()
+        return None
+        
+    def top(self):
+        """
+        :rtype: int
+        """
+        return self.stack[-1][0] if self.stack else None
+      
+    def getMin(self):
+        """
+        :rtype: int
+        """
+        return self.stack[-1][1] if self.stack else None
+
+# Your MinStack object will be instantiated and called as such:
+# obj = MinStack()
+# obj.push(val)
+# obj.pop()
+# param_3 = obj.top()
+# param_4 = obj.getMin()
+```
+
+# 150. Evaluate Reverse Polish Notation
+
+- Input: tokens = ["2", "1", "+", "3", "*"]
+- Output: 9
+- Explanation: ((2 + 1) * 3) = 9
+
+不知道為什麼用 Python 編譯出的答案是錯的。要用 Python3 才可以。
+
+從這一題開始轉用 Python3。
+
+```python
+class Solution:
+    def evalRPN(self, tokens: List[str]) -> int:
+        stack = []
+        for token in tokens:
+            if token in ("+", "-", "*", "/"):
+                b = stack.pop()
+                a = stack.pop()
+                if token == "+":
+                    stack.append(a + b)
+                elif token == "-":
+                    stack.append(a - b)
+                elif token == "*":
+                    stack.append(a * b)
+                elif token == "/":
+                    stack.append(int(a / b))
+            else:
+                stack.append(int(token))
+        return stack[0]
+```
+

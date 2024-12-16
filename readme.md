@@ -51,6 +51,7 @@
 - [141. Linked List Cycle](#141-linked-list-cycle)
 - [2. Add Two Numbers](#2-add-two-numbers)
 - [21. Merge Two Sorted Lists](#21-merge-two-sorted-lists)
+- [138. Copy List with Random Pointer](#138-copy-list-with-random-pointer)
 
 
 # 88. Merge Sorted Array
@@ -1899,4 +1900,48 @@ class Solution:
         current.next = list1 if list1 else list2
         
         return dummy_head.next
+```
+
+# 138. Copy List with Random Pointer
+
+Construct a deep copy of a linked list, which has two pointers: next and random next
+
+```python
+class Node:
+    def __init__(self, x: int, next: 'Node' = None, random: 'Node' = None):
+        self.val = int(x)
+        self.next = next
+        self.random = random
+
+class Solution:
+    def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
+        if not head:
+            return None
+
+        # Step 1. Clone each node and insert it next to the original node
+        current = head
+        while current:
+            cloned_node = Node(current.val, current.next, None)
+            current.next = cloned_node
+            current = cloned_node.next
+        
+        # Steo 2. Set random pointers of cloned nodes
+        current = head
+        while current:
+            if current.random:
+                current.next.random = current.random.next
+            current = current.next.next
+
+        # Step 3. Separate the cloned nodes from the original list
+        original = head
+        clone_head = head.next
+        clone_current = clone_head
+
+        while original:
+            original.next = original.next.next
+            clone_current.next = clone_current.next.next if clone_current.next else None
+            original = original.next
+            clone_current = clone_current.next
+
+        return clone_head
 ```

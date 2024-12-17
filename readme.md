@@ -1983,6 +1983,9 @@ class Solution:
 
 As for reverse a a linked list:
 
+- Input: head = [1, 2, 3, null]
+- Output: [3, 2, 1, null]
+
 ```python
 class Solution:
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:

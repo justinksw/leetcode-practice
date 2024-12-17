@@ -52,6 +52,7 @@
 - [2. Add Two Numbers](#2-add-two-numbers)
 - [21. Merge Two Sorted Lists](#21-merge-two-sorted-lists)
 - [138. Copy List with Random Pointer](#138-copy-list-with-random-pointer)
+- [92. Reverse Linked List II](#92-reverse-linked-list-ii)
 
 
 # 88. Merge Sorted Array
@@ -1944,4 +1945,55 @@ class Solution:
             clone_current = clone_current.next
 
         return clone_head
+```
+
+# 92. Reverse Linked List II
+
+- Input: head = [1, 2, 3, 4, 5], left = 2, right = 4
+- Output: [1, 4, 3, 2, 5]
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def reverseBetween(self, head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
+        
+        if not head or left == right:
+            return head
+
+        dummy = ListNode(0, head)
+        prev = dummy
+
+        for _ in range(left - 1):
+            prev = prev.next
+
+        cur = prev.next
+        
+        for _ in range(right - left):
+            temp = cur.next
+            cur.next = temp.next
+            temp.next = prev.next
+            prev.next = temp
+        
+        return dummy.next
+```
+
+As for reverse a a linked list:
+
+```python
+class Solution:
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        
+        node = None
+
+        while head:
+            temp = head.next
+            head.next = node
+            node = head
+            head = temp
+
+        return node
 ```

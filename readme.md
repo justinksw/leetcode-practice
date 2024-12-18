@@ -2115,7 +2115,9 @@ def isSymmetric(root: TreeNode) -> bool:
         return (left.val == right.val) and isMirror(left.right, right.left) and isMirror(left.left, right.right)
     
     return isMirror(root, root)
+```
 
+```python
 # Example usage:
 if __name__ == "__main__":
     # Create a symmetric tree

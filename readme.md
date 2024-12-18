@@ -53,6 +53,11 @@
 - [21. Merge Two Sorted Lists](#21-merge-two-sorted-lists)
 - [138. Copy List with Random Pointer](#138-copy-list-with-random-pointer)
 - [92. Reverse Linked List II](#92-reverse-linked-list-ii)
+- [104. Maximum Depth of Binary Tree](#104-maximum-depth-of-binary-tree)
+- [100. Same Tree](#100-same-tree)
+- [226. Invert Binary Tree](#226-invert-binary-tree)
+- [101. Symmetric Tree](#101-symmetric-tree)
+- [105. Construct Binary Tree from Preorder and Inorder Traversal](#105-construct-binary-tree-from-preorder-and-inorder-traversal)
 
 
 # 88. Merge Sorted Array
@@ -1999,4 +2004,198 @@ class Solution:
             head = temp
 
         return node
+```
+
+# 104. Maximum Depth of Binary Tree
+
+**RECURSION**
+
+Given the `root` of a binary tree, return *its maximum depth*.
+
+This is achieved through a **depth-first search (DFS)** approach
+
+This function uses *recursion* to traverse the tree. It calculates the depth of the left and right subtrees and returns the maximum of these two values, plus one to account for the root node.
+
+```python
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+def maxDepth(root: TreeNode) -> int:
+   
+   if not root:
+        return 0
+
+    left_depth = maxDepth(root.left)
+
+    right_depth = maxDepth(root.right)
+
+    return max(left_depth, right_depth) + 1
+```
+
+# 100. Same Tree
+
+Given the roots of two binary trees `p` and `q`, write a function to check if they are the same or not.
+
+- Input: p = [1, 2, 3], q = [1, 2, 3]
+- Output: true
+
+- Input: p = [1, 2], q = [1, null, 2]
+- Output: false
+
+```python
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+def isSameTree(p: TreeNode, q: TreeNode) -> bool:
+
+    if not p and not q:
+        return True
+
+    if not p or not q:
+        return False
+
+    if p.val != q.val:
+        return False
+
+    return isSameTree(p.left, q.left) and isSameTree(p.right, q.right)
+```
+
+# 226. Invert Binary Tree
+
+Given the root of a binary tree, invert the tree, and return its root.
+
+把每一個 root 的 left 和 right 交換。
+
+需要注意的是代碼中在交換左右的時候，需要同時進行，不能分開兩行分別進行。
+
+```python
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+def invertTree(root: TreeNode) -> TreeNode:
+    if root:
+    
+        # 同時
+        root.left, root.right = invertTree(root.right), invertTree(root.left)
+    
+    return root
+```
+
+# 101. Symmetric Tree
+
+Given the `root` of a binary tree, check whether it is a mirror of itself (i.e., symmetric around its center).
+
+```python
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+def isSymmetric(root: TreeNode) -> bool:
+    
+    def isMirror(left: TreeNode, right: TreeNode) -> bool:
+    
+        if not left and not right:
+            return True
+    
+        if not left or not right:
+            return False
+    
+        return (left.val == right.val) and isMirror(left.right, right.left) and isMirror(left.left, right.right)
+    
+    return isMirror(root, root)
+
+# Example usage:
+if __name__ == "__main__":
+    # Create a symmetric tree
+    root = TreeNode(1)
+    root.left = TreeNode(2)
+    root.right = TreeNode(2)
+    root.left.left = TreeNode(3)
+    root.left.right = TreeNode(4)
+    root.right.left = TreeNode(4)
+    root.right.right = TreeNode(3)
+
+    # Check if the tree is symmetric
+    print(isSymmetric(root))  # Output: True
+
+    # Create an asymmetric tree
+    root = TreeNode(1)
+    root.left = TreeNode(2)
+    root.right = TreeNode(2)
+    root.left.right = TreeNode(3)
+    root.right.right = TreeNode(3)
+
+    # Check if the tree is symmetric
+    print(isSymmetric(root))  # Output: False
+```
+
+# 105. Construct Binary Tree from Preorder and Inorder Traversal
+
+https://www.shubo.io/iterative-binary-tree-traversal/
+
+遍歷二元樹 (Binary Tree Traversal) 的順序有三種
+
+- 前序 (preorder)
+- 中序 (inorder)
+- 後序 (postorder)
+
+<br/><br/>
+
+- 前序 (preorder): 中 -> 左 -> 右
+- 中序 (inorder): 左 -> 中 -> 右
+- 後序 (postorder): 左 -> 右 -> 中
+
+遍歷二元樹實作又可以分為遞迴 (recursive) 和迭代 (iterative) 兩種。
+
+代碼中的 inorder_index 用作檢查是不是沒有 child
+
+```python
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+def buildTree(preorder: list[int], inorder: list[int]) -> TreeNode:
+    if not preorder or not inorder:
+        return None
+
+    # The first element in preorder is the root node
+    root_val = preorder.pop(0)
+    root = TreeNode(root_val)
+
+    # Find the index of the root in inorder
+    inorder_index = inorder.index(root_val)
+
+    # Recursively build the left and right subtrees
+    root.left = buildTree(preorder, inorder[:inorder_index])
+    root.right = buildTree(preorder, inorder[inorder_index+1:])
+
+    return root
+```
+
+```python
+def printTree(node: TreeNode, level=0):
+    if node is not None:
+        printTree(node.right, level + 1)
+        print(' ' * 4 * level + '->', node.val)
+        printTree(node.left, level + 1)
+
+if __name__ == "__main__":
+    preorder = [3, 9, 20, 15, 7]
+    inorder = [9, 3, 15, 20, 7]
+    
+    root = buildTree(preorder, inorder)
+    printTree(root)
 ```

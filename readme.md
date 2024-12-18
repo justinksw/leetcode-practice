@@ -2156,7 +2156,11 @@ https://www.shubo.io/iterative-binary-tree-traversal/
 
 遍歷二元樹實作又可以分為遞迴 (recursive) 和迭代 (iterative) 兩種。
 
-代碼中的 inorder_index 用作檢查是不是沒有 child
+代碼中的 inorder_index 用作檢查是不是沒有 child：
+
+[:inorder_index] -> 在這個 root 左邊的值
+
+[inorder_index+1:] -> 在這個 root 右邊的值
 
 ```python
 class TreeNode:

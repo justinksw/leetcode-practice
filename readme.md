@@ -58,6 +58,7 @@
 - [226. Invert Binary Tree](#226-invert-binary-tree)
 - [101. Symmetric Tree](#101-symmetric-tree)
 - [105. Construct Binary Tree from Preorder and Inorder Traversal](#105-construct-binary-tree-from-preorder-and-inorder-traversal)
+- [106. Construct Binary Tree from Inorder and Postorder Traversal](#106-construct-binary-tree-from-inorder-and-postorder-traversal)
 
 
 # 88. Merge Sorted Array
@@ -2200,4 +2201,29 @@ if __name__ == "__main__":
     
     root = buildTree(preorder, inorder)
     printTree(root)
+```
+
+# 106. Construct Binary Tree from Inorder and Postorder Traversal
+
+[:inorder_index] -> 在這個 root 左邊的值
+
+[inorder_index+1:] -> 在這個 root 右邊的值
+
+```python
+def buildTree(inorder: list[int], postorder: list[int]) -> TreeNode:
+    if not inorder or not postorder:
+        return None
+
+    # The last element in postorder is the root node
+    root_val = postorder.pop()
+    root = TreeNode(root_val)
+
+    # Find the index of the root in inorder
+    inorder_index = inorder.index(root_val)
+
+    # Recursively build the right and left subtrees
+    root.right = buildTree(inorder[inorder_index+1:], postorder)
+    root.left = buildTree(inorder[:inorder_index], postorder)
+
+    return root
 ```

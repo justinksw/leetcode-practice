@@ -59,6 +59,7 @@
 - [101. Symmetric Tree](#101-symmetric-tree)
 - [105. Construct Binary Tree from Preorder and Inorder Traversal](#105-construct-binary-tree-from-preorder-and-inorder-traversal)
 - [106. Construct Binary Tree from Inorder and Postorder Traversal](#106-construct-binary-tree-from-inorder-and-postorder-traversal)
+- [117. Populating Next Right Pointers in Each Node II](#117-populating-next-right-pointers-in-each-node-ii)
 
 
 # 88. Merge Sorted Array
@@ -2229,3 +2230,75 @@ def buildTree(inorder: list[int], postorder: list[int]) -> TreeNode:
 
     return root
 ```
+
+# 117. Populating Next Right Pointers in Each Node II
+
+Breadth-First Search (BFS) algorithm.
+
+Use `next_level`: store nodes in same level.
+
+```python
+class Node:
+    def __init__(self, val=0, left=None, right=None, next=None):
+        self.val = val
+        self.left = left
+        self.right = right
+        self.next = next
+
+def connect(root: Node) -> Node:
+    if not root:
+        return None
+
+    # Initialize the current level with the root node
+    current_level = [root]
+    
+    while current_level:
+        next_level = []
+        
+        # Iterate through the current level nodes
+        for i in range(len(current_level)):
+            node = current_level[i]
+            
+            # Connect the current node to the next node in the level
+            # -1: 睇到倒數第二個就停
+            if i < len(current_level) - 1:
+                node.next = current_level[i + 1]
+            
+            # Add left and right children to the next level
+            if node.left:
+                next_level.append(node.left)
+            if node.right:
+                next_level.append(node.right)
+        
+        # Move to the next level
+        current_level = next_level
+    
+    return root
+
+# Helper function to print tree levels using the next pointers
+def print_tree_levels(root: Node):
+    while root:
+        current = root
+        while current:
+            print(current.val, end=" -> ")
+            current = current.next
+        print("None")
+        root = root.left
+
+if __name__ == "__main__":
+    # Create a binary tree
+    root = Node(1)
+    root.left = Node(2)
+    root.right = Node(3)
+    root.left.left = Node(4)
+    root.left.right = Node(5)
+    root.right.left = Node(6)
+    root.right.right = Node(7)
+
+    # Connect the next pointers
+    connect(root)
+    
+    # Print the tree levels
+    print_tree_levels(root)
+```
+

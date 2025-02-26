@@ -60,6 +60,7 @@
 - [105. Construct Binary Tree from Preorder and Inorder Traversal](#105-construct-binary-tree-from-preorder-and-inorder-traversal)
 - [106. Construct Binary Tree from Inorder and Postorder Traversal](#106-construct-binary-tree-from-inorder-and-postorder-traversal)
 - [117. Populating Next Right Pointers in Each Node II](#117-populating-next-right-pointers-in-each-node-ii)
+- [114. Flatten Binary Tree to Linked List](#114-flatten-binary-tree-to-linked-list)
 
 
 # 88. Merge Sorted Array
@@ -2302,3 +2303,58 @@ if __name__ == "__main__":
     print_tree_levels(root)
 ```
 
+# 114. Flatten Binary Tree to Linked List
+
+Print the binary tree in Pre-order, 中左右.
+
+This Linked List is not excatly a "Linked List", but a Binary Tree with all node's left pointer to Null.
+
+```python
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+def flatten(root: TreeNode) -> None:
+    def flatten_tree(node: TreeNode):
+        if not node:
+            return None
+
+        # Recursively flatten the left and right subtrees
+        left_tail = flatten_tree(node.left)
+        right_tail = flatten_tree(node.right)
+
+        # If there was a left subtree, we shuffle the connections
+        if left_tail:
+            left_tail.right = node.right
+            node.right = node.left
+            node.left = None
+
+        # We need to return the "tail" of the flattened tree
+        return right_tail or left_tail or node
+
+    flatten_tree(root)
+
+# Helper function to print the flattened tree
+def print_flattened_tree(root: TreeNode):
+    while root:
+        print(root.val, end=" -> ")
+        root = root.right
+    print("None")
+
+if __name__ == "__main__":
+    # Create a binary tree
+    root = TreeNode(1)
+    root.left = TreeNode(2)
+    root.right = TreeNode(5)
+    root.left.left = TreeNode(3)
+    root.left.right = TreeNode(4)
+    root.right.right = TreeNode(6)
+
+    # Flatten the tree
+    flatten(root)
+    
+    # Print the flattened tree
+    print_flattened_tree(root)
+```
